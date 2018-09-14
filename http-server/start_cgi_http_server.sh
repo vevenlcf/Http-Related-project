@@ -1,7 +1,4 @@
 #!/bin/bash
-
-mkdir ./cgi-bin/
-cp upload.cgi ./cgi-bin/
-chmod +x ./cgi-bin/upload.cgi
-mkdir ./upload/
+###默认的python cgi服务 能够列出当前目录所有文件 
+cd /tmp
 python -m CGIHTTPServer 8080
