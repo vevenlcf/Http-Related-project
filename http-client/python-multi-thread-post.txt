@@ -1,0 +1,57 @@
+import threading
+import time
+import os
+
+url = 'http://172.16.8.95:9000/store'
+
+
+def action(arg):
+    print "thread 1 is running......."
+    num = 10
+    while True:
+        file_name = "E:\\AAAvirus\\949\\" + str(0) + str(num) + ".exe"
+        path = "/tmp/" + str(num) + ".exe"
+        if os.access(file_name, os.F_OK):
+            print "filename is %s" % (file_name)
+        else:
+            num = num +1
+            continue;
+
+        requests.adapters.DEFAULT_RETRIES = 100
+        header = {'ENCTYPE': 'multipart/form-data',
+                  'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36'}
+        files = {'file': open(file_name, 'rb')}  # 文件
+        data = {'filepath': path}
+        r = requests.post(url, headers=header, files=files, data=data)
+        print r
+        num = num + 1
+        if(num > arg):
+            break;
+        #time.sleep(2)
+def action2(arg):
+    print "thread 2 is running......."
+    num = 46
+    while True:
+        file_name = "E:\\AAAvirus\\949\\" + str(0) + str(num) + ".exe"
+        path = "/tmp/" + str(num) + ".exe"
+        if os.access(file_name, os.F_OK):
+            print "filename is %s" %(file_name)
+        else:
+            num = num + 1
+            continue;
+        requests.adapters.DEFAULT_RETRIES = 100
+        header = {'ENCTYPE': 'multipart/form-data',
+                  'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36'}
+        files = {'file': open(file_name, 'rb')}  # 文件
+        data = {'filepath': path}
+        r = requests.post(url, headers=header, files=files, data=data)
+        print r
+        num = num + 1
+        if(num > arg):
+            break;
+
+
+t =threading.Thread(target=action,args=(47,))
+t.start()
+t2 =threading.Thread(target=action2,args=(99,))
+t2.start()
